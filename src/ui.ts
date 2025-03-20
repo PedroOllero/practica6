@@ -1,5 +1,5 @@
 import { puntuationBound, setPuntuationBound } from "./modelo";
-import { gameHandler, getRandomNum, getValueHandler, puntuationBoundHandler } from "./motor";
+import { getRandomNum, getValueHandler, puntuationBoundHandler } from "./motor";
 
 export const getCardHandler = (puntuation: number) => {
   const card = document.getElementById("carta");
@@ -47,6 +47,39 @@ export const getCardHandler = (puntuation: number) => {
   }
 };
 
+const gameHandler = (puntuation: number) => {
+  const comment = document.querySelector(".comentario");
+  if (comment instanceof HTMLParagraphElement) {
+    if (puntuation < 4 && puntuation > 0) {
+      comment.textContent = "Has sido muy conservador";
+      comment.classList.add("active");
+    } else if (puntuation >= 5 && puntuation <= 7.5) {
+      switch (puntuation) {
+        case 5:
+          comment.textContent = "Te ha entrado el canguelo eh";
+          comment.classList.add("active");
+          break;
+        case 6:
+          comment.textContent = "Casi casi...";
+          comment.classList.add("active");
+          break;
+        case 7:
+          comment.textContent = "Casi casi...";
+          comment.classList.add("active");
+          break;
+        case 7.5:
+          comment.textContent = "¡Lo has clavado!";
+          comment.classList.add("ganador");
+          break;
+        default:
+      }
+    } else {
+      comment.textContent = "";
+      comment.classList.remove("active");
+    }
+  }
+};
+
 export const hitMeHandler = () => {
   const hitMeButton = document.getElementById("pedir");
   if (hitMeButton instanceof HTMLButtonElement) {
@@ -78,6 +111,7 @@ export const resetHandler = () => {
       showPuntuation(puntuationBound);
       gameOver(0);
       getCardHandler(0);
+      gameHandler(0);
     });
   }
 };
