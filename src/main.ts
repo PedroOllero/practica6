@@ -1,7 +1,11 @@
-import { hitMeHandler, standHandler, resetHandler } from './ui'
+import { hitMeButtonHandler, resetButtonHandler, standButtonHandler } from "./ui";
+
+const buttonsHandler = () => {
+  hitMeButtonHandler();
+  standButtonHandler();
+  resetButtonHandler();
+};
 
 document.addEventListener("DOMContentLoaded", () => {
-  hitMeHandler();
-  standHandler();
-  resetHandler();
+  buttonsHandler();
 });
